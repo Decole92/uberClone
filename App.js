@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AcountScreen  from './Screens/AccountScreen';
-import Around from './component/Around';
+
 import ActivityScreen from './Screens/ActivityScreen';
 import Mapy from './component/Mapy';
 import MapScreen from './Screens/MapScreen';

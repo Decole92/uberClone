@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0049)https://tomeko.net/online_tools/hex_to_base64.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+
+<meta name="robots" content="index,follow">
+<meta name="Keywords" content="Base64, base 64, base 64 encoder, javascript">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="Author" content="Tomasz Ostrowski">
+<meta name="description" content="On-line javascript hexadecimal to base 64 converter.">  
+<link rel="stylesheet" type="text/css" media="only screen and (max-width: 959px)" href="./Hex to base64 converter_files/mobile.css">
+<link rel="stylesheet" type="text/css" media="only screen and (min-width: 960px)" href="./Hex to base64 converter_files/main.css">
+<script type="text/javascript" src="./Hex to base64 converter_files/tree.js.download"></script>
+
+
+<script src="./Hex to base64 converter_files/jquery-2.1.3.min.js.download"></script>
+<link rel="stylesheet" type="text/css" href="./Hex to base64 converter_files/jquery-eu-cookie-law-popup.css">
+<script src="./Hex to base64 converter_files/jquery-eu-cookie-law-popup-en.js.download"></script>
+
+<title>Hex to base64 converter</title>  
+</head>
+<body class="eupopup eupopup-bottomleft eupopup-style-compact">
+
+<div id="wrap">
+<div id="header">
+<div id="header_l">
+  <a href="https://tomeko.net/index.php?lang=en">tomeko.net</a>
+</div>
+<div id="header_r"><a href="https://tomeko.net/online_tools/hex_to_base64.php?lang=en" target="_self"><strong>ENGLISH VERSION</strong></a><br><a href="https://tomeko.net/online_tools/hex_to_base64.php?lang=pl" target="_self"><strong>WERSJA POLSKA</strong></a></div>      
+</div>
+
+<a href="https://tomeko.net/bot-trap/">
+  <img src="./Hex to base64 converter_files/pixel.gif" border="0" alt=" " width="1" height="1">
+</a>
+     
+
+<script type="text/javascript">
+<!--
+    function clean_hex(input, remove_0x) {
+        input = input.toUpperCase();
+        
+        if (remove_0x) {
+          input = input.replace(/0x/gi, "");        
+        }
+        
+        var orig_input = input;
+        input = input.replace(/[^A-Fa-f0-9]/g, "");
+        if (orig_input != input)
+            alert ("Warning! Non-hex characters in input string ignored.");
+        return input;    
+    }
+
+    var base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+    function binary_to_base64(input) {
+      var ret = new Array();
+      var i = 0;
+      var j = 0;
+      var char_array_3 = new Array(3);
+      var char_array_4 = new Array(4);
+      var in_len = input.length;
+      var pos = 0;
+  
+      while (in_len--)
+      {
+          char_array_3[i++] = input[pos++];
+          if (i == 3)
+          {
+              char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
+              char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
+              char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
+              char_array_4[3] = char_array_3[2] & 0x3f;
+  
+              for (i = 0; (i <4) ; i++)
+                  ret += base64_chars.charAt(char_array_4[i]);
+              i = 0;
+          }
+      }
+  
+      if (i)
+      {
+          for (j = i; j < 3; j++)
+              char_array_3[j] = 0;
+  
+          char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
+          char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
+          char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
+          char_array_4[3] = char_array_3[2] & 0x3f;
+  
+          for (j = 0; (j < i + 1); j++)
+              ret += base64_chars.charAt(char_array_4[j]);
+  
+          while ((i++ < 3))
+              ret += '=';
+  
+      }
+  
+      return ret;
+    }
+    
+    function Convert() {
+      var cleaned_hex = clean_hex(document.frmConvert.hex.value, document.frmConvert.chbSeparator.checked);
+      document.frmConvert.cleaned_hex.value = cleaned_hex;
+      if (cleaned_hex.length % 2) {
+        alert ("Error: cleaned hex string length is odd.");
+        document.frmConvert.base64.value = "";        
+        return;
+      }
+      var binary = new Array();
+      for (var i=0; i<cleaned_hex.length/2; i++) {
+        var h = cleaned_hex.substr(i*2, 2);
+        binary[i] = parseInt(h,16);        
+      }
+      document.frmConvert.base64.value = binary_to_base64(binary);
+    } 
+
+//-->
+</script>
+
+
+<div id="main">
+<h3>Hexadecimal -&gt; base64 string decoder</h3>
+      <form name="frmConvert" action="https://tomeko.net/online_tools/hex_to_base64.php">
+				<p>Hex string:</p>
+			    <p><input type="text" name="hex" value="" style="width: 550px;"></p>
+        <p>Note: all characters outside hex set will be ignored, thus "12AB34" = "12 AB 34" = "12, AB, 34", etc.
+        Input is case-insensitive.</p>
+        <p>Options:</p>
+          <p><input type="checkbox" name="chbSeparator" value="sep" checked="yes">remove "0x" groups from input</p>
+				<p>Cleaned input:</p>
+			    <p><input type="text" name="cleaned_hex" value="" style="width: 550px;"></p>				
+        <p>Output (base64):</p>
+			    <p><input type="text" name="base64" value="" style="width: 550px;"></p>	    
+			  <p>
+			    <button type="button" name="btnConvert" onclick="Convert()">
+            Convert
+          </button>
+			  </p>
+			</form>
+  </div>
+<div id="sidebar">
+<h3>Sitemap</h3>
+
+<ul id="tree0" class="tree">
+
+    <li style="background-image: url(&quot;https://tomeko.net/images/closed.gif&quot;);"><a class="folder">PROJECTS</a>
+    <ul style="display: none;">
+    <li><a href="https://tomeko.net/programator.php?lang=en" target="_self">FLASH 49F programmer</a></li>
+    <li><a href="https://tomeko.net/termometr.php?lang=en" target="_self">Web thermometer</a></li>
+    <li><a href="https://tomeko.net/mikroserwer.php?lang=en" target="_self">ISA microserver</a></li>
+    <li><a href="https://tomeko.net/mikroserwerPIC.php?lang=en" target="_self">PIC18F67J60 microserver</a></li>
+    <li><a href="https://tomeko.net/PCpilot.php?lang=en" target="_self">Cesko's PC remote</a></li>
+    <li><a href="https://tomeko.net/miniscope.php?lang=en" target="_self">Single chip mini-DSO</a></li>
+    <li><a href="https://tomeko.net/fastPICCDC.php?lang=en" target="_self">PIC USB CDC</a></li>
+    <li><a href="https://tomeko.net/pickit2.php?lang=en" target="_self">PICKIT 2</a></li>
+    <li><a href="https://tomeko.net/ARMboard.php?lang=en" target="_self">AT91SAM7S low cost board</a></li>
+    <li><a href="https://tomeko.net/dsoundscope/index.php?lang=en" target="_self">DirectSound oscilloscope</a></li>
+    <li><a href="https://tomeko.net/projects/dso138/index.php?lang=en" target="_self">DSO138</a></li>            
+    <li><a href="https://tomeko.net/miniscope_v2.php?lang=en" target="_self">Oscilloscope v2</a></li>
+    <li><a href="https://tomeko.net/miniscope_v2a.php?lang=en" target="_self">Oscilloscope v2a</a></li>
+    <li><a href="https://tomeko.net/miniscope_v2b/index.php?lang=en" target="_self">Oscilloscope v2b</a></li>
+    <li><a href="https://tomeko.net/miniscope_v2c/index.php?lang=en" target="_self">Oscilloscope v2c</a></li>
+    <li><a href="https://tomeko.net/miniscope_v2d/index.php?lang=en" target="_self">Oscilloscope v2d</a></li>
+    <li><a href="https://tomeko.net/miniscope_v2e/index.php?lang=en" target="_self">Oscilloscope v2e</a></li>
+    <li><a href="https://tomeko.net/miniscope_v2f/index.php?lang=en" target="_self">Oscilloscope v2f</a></li>
+    <li><a href="https://tomeko.net/miniscope_v2g/index.php?lang=en" target="_self">Oscilloscope v2g</a></li>
+    <li><a href="https://tomeko.net/miniscope_v3/index.php?lang=en" target="_self">Oscilloscope v3</a></li>    
+    <li><a href="https://tomeko.net/miniscope_v4/index.php?lang=en" target="_self">Oscilloscope v4</a></li>    
+    <li><a href="https://tomeko.net/misc.php?lang=en" target="_self">Miscellaneous</a></li>
+    <li><a href="https://tomeko.net/projects/TEA5767_radio/index.php?lang=en" target="_self">TEA5767 radio</a></li>
+    <li><a href="https://tomeko.net/projects/RDA5807M_radio/index.php?lang=en" target="_self">RDA5807M radio</a></li>
+    <li><a href="https://tomeko.net/projects/USB_1_wire_adapter/index.php?lang=en" target="_self">USB/1-wire adapter</a></li>        
+    <li><a href="https://tomeko.net/projects/metal_detector/index.php?lang=en" target="_self">Metal detector</a></li>
+    <li><a href="https://tomeko.net/projects/rtp_pager/index.php?lang=en" target="_self">RTP pager</a></li>
+    <li><a href="https://tomeko.net/projects/rtp_pager_eth/index.php?lang=en" target="_self">RTP pager: eth</a></li>                    
+    <li><a href="https://tomeko.net/projects/esp32_rtp_pager/index.php?lang=en" target="_self">ESP32: RTP pager, Scream</a></li>
+    <li><a href="https://tomeko.net/projects/scream_eth/index.php?lang=en" target="_self">STM32: Scream</a></li>
+    <li><a href="https://tomeko.net/projects/logic_probe/index.php?lang=pl" target="_self">Logic probe</a></li>                                                           
+    <li><a href="https://tomeko.net/uCboards.php" target="_self">uC starterkits</a></li>
+    <li><a href="https://tomeko.net/semi_commercial/index.php?lang=en" target="_self">Semi-commercial</a></li>    
+    </ul>
+    </li>
+    
+    <li style="background-image: url(&quot;https://tomeko.net/images/closed.gif&quot;);"><a class="folder">SOFTWARE</a>
+    <ul style="display: none;">
+    <li><a href="https://tomeko.net/freegg.php?lang=en" target="_self">Free GG</a></li>
+    <li><a href="https://tomeko.net/oterm.php?lang=en" target="_self">OTerm</a></li>
+    <li><a href="https://tomeko.net/software/JSONedit/index.php?lang=en" target="_self">JSONedit</a></li>    
+    <li><a href="https://tomeko.net/software/VideoPlayer/index.php?lang=en" target="_self">Video player</a></li>
+    <li><a href="https://tomeko.net/software/SIPclient/index.php?lang=en" target="_self">SIP client</a></li>    
+    <li><a href="https://tomeko.net/software/RawDiskViewer/index.php?lang=en" target="_self">RAW disk viewer</a></li>
+    <li><a href="https://tomeko.net/software/CbxConverter/index.php?lang=en" target="_self">CbxConverter</a></li>           
+    <li><a href="https://tomeko.net/software/DumpViewer/index.php?lang=en" target="_self">DumpViewer</a></li>
+    <li><a href="https://tomeko.net/software/CppCommentRemover/index.php?lang=en" target="_self">CppCommentRemover</a></li>            
+    <li><a href="https://tomeko.net/soft.php?lang=en" target="_self">Other</a></li>
+    </ul>
+    </li>    
+ 
+    <li style="background-image: url(&quot;https://tomeko.net/images/closed.gif&quot;);"><a class="folder">ONLINE TOOLS</a>
+    <ul style="display: none;">
+    <li><a href="https://tomeko.net/online_tools/base64.php?lang=en" target="_self">Base64 -&gt; HEX</a></li>
+    <li><a href="https://tomeko.net/online_tools/base32.php?lang=en" target="_self">Base32 -&gt; HEX</a></li>
+    <li><a href="https://tomeko.net/online_tools/base32hex.php?lang=en" target="_self">Base32hex -&gt; HEX</a></li>
+    <li><a href="https://tomeko.net/online_tools/ascii.php?lang=en" target="_self">ASCII -&gt; HEX</a></li>
+    <li><a href="https://tomeko.net/online_tools/ascii_uN.php?lang=en" target="_self">ASCII -&gt; u16/u32/u64 HEX</a></li>            
+    <li><a href="https://tomeko.net/online_tools/hex_to_base64.php?lang=en" target="_self">HEX -&gt; Base64</a></li>
+    <li><a href="https://tomeko.net/online_tools/text_to_base64.php?lang=en" target="_self">Text -&gt; Base64</a></li>
+    <li><a href="https://tomeko.net/online_tools/hex_to_base32.php?lang=en" target="_self">HEX -&gt; Base32</a></li>
+    <li><a href="https://tomeko.net/online_tools/hex_to_base32hex.php?lang=en" target="_self">HEX -&gt; Base32hex</a></li>
+    <li><a href="https://tomeko.net/online_tools/hex_to_ascii.php?lang=en" target="_self">HEX -&gt; ASCII</a></li>
+    <li><a href="https://tomeko.net/online_tools/hex_to_dec.php?lang=en" target="_self">HEX -&gt; DEC</a></li>	
+    <li><a href="https://tomeko.net/online_tools/dec_to_ascii.php?lang=en" target="_self">DEC -&gt; ASCII</a></li>
+    <li><a href="https://tomeko.net/online_tools/bin_to_32bit_hex.php?lang=en" target="_self">BIN &lt;-&gt; 32-bit hex</a></li>    
+    <li><a href="https://tomeko.net/online_tools/md5.php?lang=en" target="_self">MD5 calculator</a></li>
+    <li><a href="https://tomeko.net/online_tools/sha1.php?lang=en" target="_self">SHA1 calculator</a></li>    
+    <li><a href="https://tomeko.net/online_tools/regexp.php?lang=en" target="_self">Regular exp.</a></li>
+    <li><a href="https://tomeko.net/online_tools/cpp_text_escape.php?lang=en" target="_self">Text -&gt; Cpp</a></li>
+    <li><a href="https://tomeko.net/online_tools/cpp_unescape.php?lang=en" target="_self">Cpp -&gt; text</a></li>
+    <li><a href="https://tomeko.net/online_tools/pascal_escape.php?lang=en" target="_self">Text -&gt; Pascal</a></li>        
+    <li><a href="https://tomeko.net/online_tools/hex_to_file.php?lang=en" target="_self">HEX -&gt; file</a></li>
+    <li><a href="https://tomeko.net/online_tools/file_to_hex.php?lang=en" target="_self">File -&gt; HEX</a></li>
+    <li><a href="https://tomeko.net/online_tools/file_to_base64.php?lang=en" target="_self">File -&gt; Base64</a></li>    
+    <li><a href="https://tomeko.net/online_tools/html_list_gen.php?lang=en" target="_self">Text -&gt; HTML ul</a></li>
+    <li><a href="https://tomeko.net/online_tools/crc8.php?lang=en" target="_self">CRC8</a></li>
+    <li><a href="https://tomeko.net/online_tools/wave_gen.php?lang=en" target="_self">WAVE generator</a></li>
+    <li><a href="https://tomeko.net/online_tools/bin_decoder.php?lang=en" target="_self">Bin decoder</a></li>
+    <li><a href="https://tomeko.net/online_tools/rc4.php?lang=en" target="_self">RC4</a></li>          
+    <li><a href="https://tomeko.net/online_tools/xor.php?lang=en" target="_self">XOR</a></li>
+    <li><a href="https://tomeko.net/online_tools/inv.php?lang=en" target="_self">Inverting bits</a></li>
+    <li><a href="https://tomeko.net/online_tools/par_resistors.php?lang=en" target="_self">Par. resistors search</a></li>
+    <li><a href="https://tomeko.net/online_tools/unique_str.php?lang=en" target="_self">Deduplicate / sort</a></li>        
+    <li><a href="https://tomeko.net/online_tools/base64_to_PEM.php?lang=en" target="_self">Base64 -&gt; PEM</a></li>
+    <li><a href="https://tomeko.net/online_tools/PEM_to_base64.php?lang=en" target="_self">PEM -&gt; base64</a></li>
+    <li><a href="https://tomeko.net/online_tools/diskstats.php?lang=en" target="_self">/proc/diskstats</a></li>
+    <li><a href="https://tomeko.net/online_tools/json2xml/" target="_self">JSON -&gt; XML</a></li>    
+    </ul>
+    </li> 
+    
+
+    <li style="background-image: url(&quot;https://tomeko.net/images/closed.gif&quot;);"><a class="folder">OTHER</a>
+      <ul style="display: none;">
+        <li><a href="https://tomeko.net/snippets.php?lang=en">Code Snippets</a></li>
+        <li><a href="https://tomeko.net/other/sipp/sipp_cheatsheet.php?lang=pl">SIPp</a></li>
+        <li><a href="https://tomeko.net/other/SIPp-MinGW/index.php?lang=en">SIPp/MinGW</a></li>
+        <li><a href="https://tomeko.net/other/pjsua/reg_fuzzer.php?lang=en">SIP reg fuzzer</a></li>  
+        <li><a href="https://tomeko.net/other/linux/command_line_cheatsheet.php">Linux command line</a></li>
+        <li><a href="https://tomeko.net/other/lpt_winxp/lpt_winxp.php?lang=en">LPT WinXP</a></li>
+        <li><a href="https://tomeko.net/other/avrdude/building_avrdude.php?lang=en">Avrdude/MinGW</a></li>
+        <li><a href="https://tomeko.net/reviews/dell_d600.php?lang=en">Dell D600 review</a></li>
+        <li><a href="https://tomeko.net/reviews/BT_module/index.php?lang=en">JY-MCU/HC-06 BT</a></li>
+        <li><a href="https://tomeko.net/other/ESP8266/index.php?lang=en">ESP8266</a></li>
+        <li><a href="https://tomeko.net/reviews/avr_nano/index.php?lang=pl">AVR nano / scope</a></li>        
+      </ul>
+    </li>
+    <li><a href="https://tomeko.net/linki.php?lang=en" target="_self">Links</a></li>
+    <li><a href="https://tomeko.net/hist_strony.php?lang=en" target="_self">What's new?</a></li>
+    <li><a href="https://tomeko.net/contact2.php?lang=en" target="_self">Contact</a></li></ul>
+<script type="text/javascript">
+<!--
+new tree("tree0");
+//-->
+</script>
+
+<br>  
+<br>  
+<br>  
+
+
+
+
+
+  <br>    
+  <script type="text/javascript"><!--
+  google_ad_client = "pub-0627417362141126";
+  /* 120x240, utworzono 09-08-29 */
+  google_ad_slot = "6981730914";
+  google_ad_width = 120;
+  google_ad_height = 240;
+  //-->
+  </script>
+  <script type="text/javascript" src="./Hex to base64 converter_files/f.txt">
+  </script>
+        
+    
+</div>
+
+
+<div id="footer">
+
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-0627417362141126";
+/* 728x90, utworzono 10-03-06 */
+google_ad_slot = "5895024682";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="./Hex to base64 converter_files/f.txt">
+</script>
+  
+</div>
+
+
+<br>
+<div id="footer2"><p>      
+      <font size="-2">&nbsp;"Cookie monsters": 6549455&nbsp;&nbsp;&nbsp;&nbsp;Parse time:&nbsp;0.083 s</font>
+  </p>
+	</div>
+</div>
+
+
+
+<div class="eupopup-container eupopup-container-bottomleft eupopup-style-compact eupopup-color-default" style="display: block;"><div class="eupopup-head">This website is using cookies. </div><div class="eupopup-body"></div><div class="eupopup-buttons"><a href="https://tomeko.net/online_tools/hex_to_base64.php#" class="eupopup-button eupopup-button_1">Continue</a><a href="http://tomeko.net/cookie-policy.php" target="_blank" class="eupopup-button eupopup-button_2">Learn&nbsp;more</a><div class="clearfix"></div></div><a href="https://tomeko.net/online_tools/hex_to_base64.php#" class="eupopup-closebutton">x</a></div></body></html>

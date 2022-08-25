@@ -11,7 +11,7 @@ import { GoogleAuthProvider,  FacebookAuthProvider, signInWithCredential, onAuth
 
 
 import { ResponseType } from 'expo-auth-session';
-import { auth } from '../friebase';
+import { auth } from '../firebase';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -41,16 +41,23 @@ const [requestFacebook, responseFacebook, promptAsyncFacebook] = Facebook.useAut
 
  
 
-  responseType: ResponseType.Token,
- // responseType:'token_id',
+//responseType:ResponseType.Token,
+
+//responseType:"code",
+
+
+response_type:"id_token",
 
   //redirectUri: `fb810585593435493://authorize`,
 
-  redirectUri:'https://auth.expo.io/@okpoka92/uber',
+ redirectUri:'https://auth.expo.io/@okpoka92/uber',
 
   
 });
+
 useProxy,
+
+
 
   useEffect(() => {
 
@@ -119,7 +126,9 @@ setFbUser(null);
 
   const [request, response, promptAsyncGoogle] = Google.useAuthRequest({
 
-   androidClientId:'374210656199-dra3fm2jlhlotbvbh1d6bp8fmkvctbvo.apps.googleusercontent.com',
+    
+  
+    androidClientId:'374210656199-j3bg16o3v13d3g9t6g6gekbfgdmcufdm.apps.googleusercontent.com',
     
     isoClientId:'374210656199-onmt46bbn3v4kgpe6v6gs1f7n1oh8ki4.apps.googleusercontent.com',
     
@@ -129,9 +138,11 @@ setFbUser(null);
     
     scopes:['profile', 'email'],
     
-    responseType:ResponseType.Token,
-
-   //responseType:'id_token',
+   // responseType:ResponseType.Token,
+  // responseType:"token",
+  //responseType:'id_token',
+ response_type:'id_token',
+  // response_type:ResponseType.Token
 
   });
 

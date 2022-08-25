@@ -5,7 +5,8 @@ import { StyleSheet, Text,  Dimensions,
   import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
   import {Fontisto, Entypo} from 'react-native-vector-icons'
 import { useNavigation } from '@react-navigation/native'
-import Constants from 'expo-constants';
+
+import GOOGLE_API_KEY from '../hook/GOOGLE_API_KEY'
 
 
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps'
@@ -138,8 +139,8 @@ useEffect(() => {
    fetchDetails={true}
    enablePoweredByContainer={false}
    query={{
-     key: 'AIzaSyBSAh9g0oPgyv5hrsBc2toK_FXvtNz4S8M',
-     language: 'en',
+    key: GOOGLE_API_KEY,
+    language: 'en',
     }}  
 
   
@@ -213,7 +214,7 @@ const position = {
   fetchDetails={true}
   enablePoweredByContainer={false}
   query={{
-    key: 'AIzaSyBSAh9g0oPgyv5hrsBc2toK_FXvtNz4S8M',
+    key:GOOGLE_API_KEY,
     language: 'en',
   }}  
   nearbyPlacesAPI='GoogleReverseGeocoding'
@@ -308,7 +309,7 @@ coordinate={destination}>
 { origin && destination && <MapViewDirections 
 origin={origin}
 destination={destination}
-apikey="AIzaSyBSAh9g0oPgyv5hrsBc2toK_FXvtNz4S8M"
+apikey={GOOGLE_API_KEY}
 strokeColor="#6644ff"
 strokeWidth={4}
 onReady={traceRoute}

@@ -6,7 +6,7 @@ import * as WebBrowser from 'expo-web-browser';
 import * as Facebook from 'expo-auth-session/providers/facebook';
 import { ResponseType } from 'expo-auth-session';
 import { FacebookAuthProvider, onAuthStateChanged, signInWithCredential} from 'firebase/auth';
-import { auth } from '../friebase';
+import { auth } from '../firebase';
 
 WebBrowser.maybeCompleteAuthSession();
 

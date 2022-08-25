@@ -1,0 +1,159 @@
+body,
+html {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 140%;
+  margin:0;
+  padding:0;
+  background:#696969;
+  text-align:center;
+  color:#000;
+
+  min-height: 100%;
+  margin-bottom: 1px;  
+}
+body {
+  min-width:960px;
+}
+
+a {
+  color: #050580;
+}
+
+a img {
+  border: none;
+}
+	
+#wrap {
+  background:#B9B9B9;
+  margin:0 auto;
+  width:960px;
+}
+
+#header {
+  background:#696969;
+}
+
+#header_l {
+  float:left;
+  text-align:left;
+  font-size: 30px;
+  margin:10px;
+}
+
+#header a {
+  color:#B9B9B9;
+  text-decoration:none;
+}
+
+#header_r {
+  text-align:right;
+  margin:10px;
+}
+
+#main {
+  background:#B9B9B9;
+  margin: 10px 10px 10px 10px;
+  float:left;
+  text-align:left;
+  width:720px;
+  min-height:480px;
+}
+
+/*ie hack (not see min-height)*/
+* html #main {
+  height: 480px;
+}
+
+#main {
+  padding:0 10px;
+}
+
+#main pre {
+  font-size: 12px;
+}
+
+.code { 
+  font-family: courier, courier new, monospace;
+}
+
+#sidebar {
+  font-size: 12px;
+  line-height: 120%;
+  text-align:left;
+  background:#B1B1B1;
+  margin: 10px 10px 10px 10px;
+  float:right;
+  width:180px;
+}
+#sidebar ul {
+  margin-bottom:0;
+}
+#sidebar h3, #sidebar p {
+  padding:0 10px 0 0;
+}
+#footer {
+  background:#B9B9B9;
+  position: relative;
+	clear:both;
+}
+#footer p {
+	padding:0px;
+	margin:0;
+}
+#footer2 {
+  background:#696969;
+  position: relative;
+	clear:both;
+}
+#footer2 p {
+	padding:5px;
+	margin:0;
+}
+
+.thumb {
+  margin: 5px 5px 5px 5px;
+}
+
+ul.tree {
+  display: block;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+ul.tree ul {
+  display: block;
+  margin-left: 0;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ul.tree li {
+  display: block;
+  list-style-type: none;
+  padding-left: 20px;
+  font-size: 13px;
+  background-image: url("../images/document.gif");
+  background-position: left top;
+  background-repeat: no-repeat;
+}
+
+ul.tree li a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul.tree li a.folder {
+
+}
+
+ul.tree li a.active {
+  font-weight: bold;
+}
+
+ul.tree li a:hover {
+  text-decoration: underline;
+}
+    
+
