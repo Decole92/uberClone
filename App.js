@@ -28,7 +28,7 @@ import useAuth from './hook/useAuth';
 
 import { AuthProvider } from './hook/useAuth';
 
-import { useLayoutEffect } from 'react';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -39,12 +39,6 @@ const Tab = createBottomTabNavigator();
 
   const { fbUser, user } = useAuth();
 
-
-
- 
-  
-  
-  
   const Stack = createNativeStackNavigator();
   
 
@@ -54,34 +48,16 @@ const Tab = createBottomTabNavigator();
 
   <NavigationContainer>
 
+  <Stack.Navigator>
 
+     { user || fbUser ? (
+        <>
+     <Stack.Screen name="MyTab" options={{ headerShown: false }}  component={MyTab} />
 
-    <Stack.Navigator>
-
-     { fbUser || user ? (
+ <Stack.Screen name="Set" options={{ headerShown:false }} component={SetMap} />
        
-       <>
-
-
-
-      
-
-<Stack.Group>
-  <Stack.Screen name="MyTab" options={{ headerShown: false }}  component={MyTab} />
-    </Stack.Group>
-
- <Stack.Group>
-        <Stack.Screen name="Set" options={{ headerShown:false }} component={SetMap} />
-       </Stack.Group>
+ <Stack.Screen name="Map" options={{ headerShown:false }}  component={MapScreen}/>
   
-
-
-
-<Stack.Group>
-  <Stack.Screen name="Map" options={{ headerShown:false }}  component={MapScreen}/>
-  </Stack.Group>
-      
-
 
       </>
      ) : (
@@ -109,10 +85,7 @@ const Tab = createBottomTabNavigator();
 
 function MyTab(){
 
-
-
-
-  return (
+ return (
  
 <Tab.Navigator 
 
@@ -136,9 +109,6 @@ initialRouteName={HomeScreen}
   }
  
  }}
-
-
-
 
   >
 

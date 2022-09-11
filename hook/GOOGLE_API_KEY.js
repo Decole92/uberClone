@@ -1,1 +1,0 @@
-export default GOOGLE_API_KEY="AIzaSyBSAh9g0oPgyv5hrsBc2toK_FXvtNz4S8M"

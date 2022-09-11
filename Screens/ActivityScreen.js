@@ -6,7 +6,7 @@ import { History } from '../Dummy/History'
 import MapView, {PROVIDER_DEFAULT, PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions'
 import { ScrollView } from 'react-native'
-import GOOGLE_API_KEY from '../hook/GOOGLE_API_KEY'
+
 
 
 const ActivityScreen = () => {
@@ -108,7 +108,7 @@ source={require("../assets/dot.png")} />
 { origin && destination && <MapViewDirections 
 origin={origin}
 destination={destination}
-apikey={GOOGLE_API_KEY}
+apikey={process.env.REACT_APP_GOOGLE_API_KEY}
 strokeColor="#36454F"
 strokeWidth={3}
 

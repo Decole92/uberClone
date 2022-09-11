@@ -37,16 +37,15 @@ const useProxy = Platform.select({ web: false, default: true });
 //facebook auth provider
 
 const [requestFacebook, responseFacebook, promptAsyncFacebook] = Facebook.useAuthRequest({
-  clientId:'810585593435493',
 
- 
+  clientId: process.env.REACT_APP_CLIENT_ID,
 
 //responseType:ResponseType.Token,
 
 //responseType:"code",
 
 
-response_type:"id_token",
+responseType:Response.Token,
 
   //redirectUri: `fb810585593435493://authorize`,
 
@@ -126,22 +125,18 @@ setFbUser(null);
 
   const [request, response, promptAsyncGoogle] = Google.useAuthRequest({
 
+    androidClientId: process.env.REACT_APP_ANDROID_CLIENT_ID,
     
-  
-    androidClientId:'374210656199-j3bg16o3v13d3g9t6g6gekbfgdmcufdm.apps.googleusercontent.com',
+    isoClientId: process.env.REACT_APP_IOS_CLIENT_ID,
     
-    isoClientId:'374210656199-onmt46bbn3v4kgpe6v6gs1f7n1oh8ki4.apps.googleusercontent.com',
-    
-    expoClientId:'374210656199-q916b9hssr9obm3pknvjti2ah2e4s271.apps.googleusercontent.com',
+    expoClientId: process.env.REACT_APP_WEB_CLIENT_ID,
 
-    permission:['public_profile', 'email', 'gender', 'location'],
+     permission:['public_profile', 'email', 'gender', 'location'],
     
     scopes:['profile', 'email'],
+
+    responseType:ResponseType.Token,
     
-   // responseType:ResponseType.Token,
-  // responseType:"token",
-  //responseType:'id_token',
- response_type:'id_token',
   // response_type:ResponseType.Token
 
   });

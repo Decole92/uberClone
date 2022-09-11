@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
    const [fbUser, setFbUser] = useState(null);
   
    const [request, responseFacebook, promptAsyncFacebook] = Facebook.useAuthRequest({
-    clientId:'810585593435493',
+    clientId: process.env.CLIENT_ID,
     responseType: ResponseType.Token,
     
   });
