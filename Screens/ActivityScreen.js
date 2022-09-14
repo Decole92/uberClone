@@ -108,7 +108,7 @@ source={require("../assets/dot.png")} />
 { origin && destination && <MapViewDirections 
 origin={origin}
 destination={destination}
-apikey={process.env.REACT_APP_GOOGLE_API_KEY}
+apikey={process.env.GOOGLE_API_KEY}
 strokeColor="#36454F"
 strokeWidth={3}
 

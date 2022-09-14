@@ -6,6 +6,7 @@ import * as Facebook from 'expo-auth-session/providers/facebook';
 
 import * as WebBrowser from 'expo-web-browser';
 
+import envs from '../config/env'
 
 import { GoogleAuthProvider,  FacebookAuthProvider, signInWithCredential, onAuthStateChanged, signOut } from 'firebase/auth';
 
@@ -38,7 +39,7 @@ const useProxy = Platform.select({ web: false, default: true });
 
 const [requestFacebook, responseFacebook, promptAsyncFacebook] = Facebook.useAuthRequest({
 
-  clientId: process.env.REACT_APP_CLIENT_ID,
+  clientId: process.env.FB_CLIENT_ID,
 
 //responseType:ResponseType.Token,
 
@@ -125,11 +126,11 @@ setFbUser(null);
 
   const [request, response, promptAsyncGoogle] = Google.useAuthRequest({
 
-    androidClientId: process.env.REACT_APP_ANDROID_CLIENT_ID,
+    androidClientId: process.env.ANDROID_CLIENT_ID,
     
-    isoClientId: process.env.REACT_APP_IOS_CLIENT_ID,
+    isoClientId: process.env.IOS_CLIENT_ID,
     
-    expoClientId: process.env.REACT_APP_WEB_CLIENT_ID,
+    expoClientId: process.env.WEB_CLIENT_ID,
 
      permission:['public_profile', 'email', 'gender', 'location'],
     

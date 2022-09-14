@@ -139,7 +139,7 @@ useEffect(() => {
    fetchDetails={true}
    enablePoweredByContainer={false}
    query={{
-    key: process.env.REACT_APP_GOOGLE_API_KEY,
+    key: process.env.GOOGLE_API_KEY,
     language: 'en',
     }}  
 
@@ -214,7 +214,7 @@ const position = {
   fetchDetails={true}
   enablePoweredByContainer={false}
   query={{
-    key:process.env.REACT_APP_GOOGLE_API_KEY,
+    key:process.env.GOOGLE_API_KEY,
     language: 'en',
   }}  
   nearbyPlacesAPI='GoogleReverseGeocoding'
@@ -309,7 +309,7 @@ coordinate={destination}>
 { origin && destination && <MapViewDirections 
 origin={origin}
 destination={destination}
-apikey={process.env.REACT_APP__KEY}
+apikey={process.env.GOOGLE_API_KEY}
 strokeColor="#6644ff"
 strokeWidth={4}
 onReady={traceRoute}

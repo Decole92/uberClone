@@ -9,12 +9,12 @@ import { getStorage } from "firebase/storage"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: "uber-2-yt-7b5a9.firebaseapp.com",
   projectId: "uber-2-yt-7b5a9",
   storageBucket: "uber-2-yt-7b5a9.appspot.com",
   messagingSenderId: "374210656199",
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  appId: process.env.FIREBASE_APP_ID,
 };
 
 // Initialize Firebase

@@ -6,6 +6,7 @@ import tw from 'tailwind-rn'
 import  MapView, {PROVIDER_DEFAULT, PROVIDER_GOOGLE, Marker } from 'react-native-maps'
 
 import MapViewDirections from 'react-native-maps-directions'
+import envs from '../config/env'
 
 
 const Mapy = ({origin, destination}) => {
@@ -87,7 +88,7 @@ coordinate={destination}>
 { origin && destination && <MapViewDirections 
 origin={origin}
 destination={destination}
-apikey={process.env.REACT_APP_GOOGLE_API_KEY}
+apikey={process.env.GOOGLE_API_KEY}
 strokeColor="#6644ff"
 strokeWidth={4}
 
