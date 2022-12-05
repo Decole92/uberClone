@@ -6,7 +6,7 @@ import * as Facebook from 'expo-auth-session/providers/facebook';
 
 import * as WebBrowser from 'expo-web-browser';
 
-import envs from '../config/env'
+
 
 import { GoogleAuthProvider,  FacebookAuthProvider, signInWithCredential, onAuthStateChanged, signOut } from 'firebase/auth';
 
@@ -46,7 +46,7 @@ const [requestFacebook, responseFacebook, promptAsyncFacebook] = Facebook.useAut
 //responseType:"code",
 
 
-responseType:Response.Token,
+responseType:ResponseType.Token,
 
   //redirectUri: `fb810585593435493://authorize`,
 
@@ -131,14 +131,15 @@ setFbUser(null);
     isoClientId: process.env.IOS_CLIENT_ID,
     
     expoClientId: process.env.WEB_CLIENT_ID,
+    
 
      permission:['public_profile', 'email', 'gender', 'location'],
     
     scopes:['profile', 'email'],
 
-    responseType:ResponseType.Token,
+    //responseType:ResponseType.Token,
     
-  // response_type:ResponseType.Token
+  response_type:ResponseType.Token
 
   });
 

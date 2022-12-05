@@ -2,20 +2,16 @@ import { Dimensions, Platform, StyleSheet, Text, View } from 'react-native'
 
 import React, {useState, useRef, useCallback, useEffect} from 'react'
 
-import tw from 'tailwind-rn'
+
 import  MapView, {PROVIDER_DEFAULT, PROVIDER_GOOGLE, Marker } from 'react-native-maps'
 
 import MapViewDirections from 'react-native-maps-directions'
-import envs from '../config/env'
+
 
 
 const Mapy = ({origin, destination}) => {
 
 const mapRef = useRef();
-
-
-
-
 
 
 const onMapReadyHandler = useCallback(() => {
